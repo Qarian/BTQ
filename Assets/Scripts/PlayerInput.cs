@@ -8,6 +8,7 @@ public class PlayerInput : MonoBehaviour
 
     [SerializeField] private HeadLeg headLeg;
     [SerializeField] private CharacterSelection characterSelection;
+    
 
     private int counter = 0;
 
@@ -29,7 +30,10 @@ public class PlayerInput : MonoBehaviour
     {
         headLeg.ContractLeg(ctx.canceled);
         if (ctx.started)
+        {
             characterSelection.Approve();
+            SceneSelection.Instance.Approve();
+        }
     }
 
     public void NextCharacter(InputAction.CallbackContext ctx)
@@ -62,7 +66,7 @@ public class PlayerInput : MonoBehaviour
     {
         if (ctx.started)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            GameManager.Instance.endGameCanvas.ResetGame();
         }
     }
 }

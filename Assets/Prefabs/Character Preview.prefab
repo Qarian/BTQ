@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 171093669103112861}
   - component: {fileID: 4550305631922340560}
   m_Layer: 0
-  m_Name: CharacterSelection
+  m_Name: Character Preview
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

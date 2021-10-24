@@ -12,13 +12,13 @@ public class CharacterSelection : MonoBehaviour
     [SerializeField] private AllCharacters allCharacters;
 
     [SerializeField] private HeadLeg player;
-    private Character currentCharacter;
+    private CharacterInfo _currentCharacterInfo;
 
     public bool approved;
 
     public void Start()
     {
-        currentCharacter = allCharacters.list.First(c => c.used == false);
+        _currentCharacterInfo = allCharacters.list.First(c => c.used == false);
         DisplayCharacter();
         
         transform.SetParent(CharacterSelectionParent.Instance.transform);
@@ -29,9 +29,9 @@ public class CharacterSelection : MonoBehaviour
     {
         if (approved) return;
         
-        currentCharacter.used = false;
-        int id = allCharacters.list.FindIndex(c => c == currentCharacter);
-        currentCharacter = null;
+        _currentCharacterInfo.used = false;
+        int id = allCharacters.list.FindIndex(c => c == _currentCharacterInfo);
+        _currentCharacterInfo = null;
 
         if (direction > 0)
         {
@@ -41,19 +41,19 @@ public class CharacterSelection : MonoBehaviour
                 {
                     if (allCharacters.list[i].used == false)
                     {
-                        currentCharacter = allCharacters.list[i];
+                        _currentCharacterInfo = allCharacters.list[i];
                         break;
                     }
                 }
             }
 
-            if (!currentCharacter)
+            if (!_currentCharacterInfo)
             {
                 for (int i = 0; i < id; i++)
                 {
                     if (allCharacters.list[i].used == false)
                     {
-                        currentCharacter = allCharacters.list[i];
+                        _currentCharacterInfo = allCharacters.list[i];
                         break;
                     }
                 }
@@ -67,19 +67,19 @@ public class CharacterSelection : MonoBehaviour
                 {
                     if (allCharacters.list[i].used == false)
                     {
-                        currentCharacter = allCharacters.list[i];
+                        _currentCharacterInfo = allCharacters.list[i];
                         break;
                     }
                 }
             }
 
-            if (!currentCharacter)
+            if (!_currentCharacterInfo)
             {
                 for (int i = allCharacters.list.Count - 1; i > 0; i--)
                 {
                     if (allCharacters.list[i].used == false)
                     {
-                        currentCharacter = allCharacters.list[i];
+                        _currentCharacterInfo = allCharacters.list[i];
                         break;
                     }
                 }
@@ -91,20 +91,20 @@ public class CharacterSelection : MonoBehaviour
 
     private void DisplayCharacter()
     {
-        currentCharacter.used = true;
-        head.sprite = currentCharacter.head;
-        leg.sprite = currentCharacter.leg;
-        characterName.text = currentCharacter.name;
+        _currentCharacterInfo.used = true;
+        head.sprite = _currentCharacterInfo.head;
+        leg.sprite = _currentCharacterInfo.leg;
+        characterName.text = _currentCharacterInfo.name;
         characterName.color = Color.white;
     }
 
     public void Approve()
     {
-        if (!currentCharacter) return;
+        if (!_currentCharacterInfo) return;
         approved = true;
         characterName.color = Color.green;
         CharacterSelectionParent.Instance.CheckApproves();
-        player.SetSprites(currentCharacter);
+        player.SetCharacter(_currentCharacterInfo);
     }
 
     public void ResetApprove()

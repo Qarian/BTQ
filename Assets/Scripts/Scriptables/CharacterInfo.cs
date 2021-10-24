@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "New Character", fileName = "Character")]
-public class Character : ScriptableObject
+public class CharacterInfo : ScriptableObject
 {
     public Sprite head;
     public Sprite leg;

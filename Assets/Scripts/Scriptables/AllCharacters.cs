@@ -4,5 +4,5 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "All Characters", fileName = "All Characters")]
 public class AllCharacters : ScriptableObject
 {
-    public List<Character> list;
+    public List<CharacterInfo> list;
 }

@@ -15,16 +15,13 @@ public class Foot : MonoBehaviour
         
         HeadLeg enemy = other.transform.GetComponentInParent<HeadLeg>();
         
-        if (!player.StraighteningLeg)
-        {
-            enemy?.Kick(player.baseDmg);
-        }
-        else
+        if (player.StraighteningLeg)
         {
             player.rigidbody.AddForce(player.jumpForce * player.transform.up, ForceMode2D.Impulse);
             
-            enemy?.Kick(player.baseDmg * 2);
-            enemy?.rigidbody.AddForce(player.jumpForce * player.transform.up, ForceMode2D.Impulse);
+            enemy?.Kick();
+            if(other.gameObject.name == "Body")
+                enemy?.rigidbody.AddForce(player.jumpForce * 0.5f * -other.contacts[0].normal, ForceMode2D.Impulse);
         }
     }
 }

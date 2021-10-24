@@ -72,15 +72,15 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: c4be5c4fa5e0b2f4cbd98c948b5d2677, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.7875, y: 1.785}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!58 &2274307876783182177
@@ -98,7 +98,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 1.2
+  m_Radius: 1
 --- !u!1 &4171188993866230832
 GameObject:
   m_ObjectHideFlags: 0
@@ -172,15 +172,15 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 85c13986bb82c5d43860099ba0b15e67, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.1, y: 1.35}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!61 &7986809690607608236
@@ -196,18 +196,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -1}
+  m_Offset: {x: 0, y: -0.8}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 1}
-    oldSize: {x: 1.4666667, y: 1.8}
-    newSize: {x: 1, y: 1}
+    oldSize: {x: 1.2571429, y: 1.5428572}
+    newSize: {x: 1.1, y: 1.35}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.45, y: 1.6}
+  m_Size: {x: 1.25, y: 1.5}
   m_EdgeRadius: 0
 --- !u!114 &5050526643613314513
 MonoBehaviour:
@@ -230,8 +230,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4921195532245628308}
-  - component: {fileID: 8474314884632889397}
   - component: {fileID: 789158433319788336}
+  - component: {fileID: 8474314884632889397}
   - component: {fileID: 925522788527597874}
   - component: {fileID: 2510944559211970866}
   m_Layer: 0
@@ -258,27 +258,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &8474314884632889397
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6610435165283430428}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0.05
-  m_AngularDrag: 0.5
-  m_GravityScale: 1
-  m_Material: {fileID: 6200000, guid: 86690a5dd911b6349ad79f2053a9e9a9, type: 2}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!114 &789158433319788336
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -295,13 +274,36 @@ MonoBehaviour:
   sceneData: {fileID: 11400000, guid: 81e404a7f379033428ce95d20a4604b9, type: 2}
   headRenderer: {fileID: 8451618285893607502}
   legRenderer: {fileID: 7545277698215566557}
-  rotationAcceleration: 200
+  playerUIPrefab: {fileID: 5011849937614548552, guid: ce6d64b577feee9468de601caa9d3438, type: 3}
+  rotationAcceleration: 400
+  startLives: 3
   legBounds: {x: 0, y: -0.7}
   scaleBound: {x: 0.5, y: 1}
   hidingSpeed: 8
   releasingSpeed: 20
   jumpForce: 8
   baseDmg: 0
+--- !u!50 &8474314884632889397
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6610435165283430428}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0.02
+  m_AngularDrag: 0.05
+  m_GravityScale: 1.5
+  m_Material: {fileID: 6200000, guid: 86690a5dd911b6349ad79f2053a9e9a9, type: 2}
+  m_Interpolate: 1
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!114 &925522788527597874
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -407,6 +409,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 1a045353-f558-473a-a1f2-1d8e5ca84657
     m_ActionName: Main/Revert[/Keyboard/escape,/XInputControllerWindows/buttonEast,/XInputControllerWindows/buttonEast]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2510944559211970866}
+        m_TargetAssemblyTypeName: PlayerInput, Assembly-CSharp
+        m_MethodName: Restart
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 450145a0-b3f3-49b1-a8de-d5b45f77a82f
+    m_ActionName: Main/Reset[/Keyboard/r]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Main

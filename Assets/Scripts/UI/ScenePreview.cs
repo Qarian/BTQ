@@ -5,11 +5,14 @@ public class ScenePreview : MonoBehaviour
 {
     [SerializeField] private Image preview;
     [SerializeField] private Image selectionStamp;
-    
 
+    [HideInInspector]
+    public SceneData sceneData;
+    
     public void SetPreview(SceneData sceneData)
     {
-        preview.sprite = sceneData.preview;
+        this.sceneData = sceneData;
+        preview.sprite = sceneData.graphic;
     }
 
     public void Select()

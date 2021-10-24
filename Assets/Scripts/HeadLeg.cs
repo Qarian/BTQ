@@ -8,10 +8,12 @@ public class HeadLeg : MonoBehaviour
     [SerializeField] private SceneData sceneData;
     [SerializeField] private SpriteRenderer headRenderer;
     [SerializeField] private SpriteRenderer legRenderer;
-    
-    
+
+    [SerializeField] private PlayerUI playerUIPrefab;
+
     [Header("Head")]
     [SerializeField] private float rotationAcceleration;
+    [SerializeField] private int startLives = 3;
 
     [Header("Leg")]
     [SerializeField] private Vector2 legBounds;
@@ -25,17 +27,19 @@ public class HeadLeg : MonoBehaviour
 
     [NonSerialized]
     public Rigidbody2D rigidbody;
-
-    private float HidingSpeed => Mathf.Abs(legBounds.x - legBounds.y) * hidingSpeed;
-    private float ReleasingSpeed => Mathf.Abs(legBounds.x - legBounds.y) * releasingSpeed;
-
-    private bool releasing = true;
-    [NonSerialized]
-    public float rotationInput;
+    public CharacterInfo CharacterInfo { get; private set; }
+    private PlayerInput input;
+    private PlayerUI ui;
 
     public bool StraighteningLeg => releasing && leg.localPosition.y > legBounds.y;
-
-    private PlayerInput input;
+    
+    private float HidingSpeed => Mathf.Abs(legBounds.x - legBounds.y) * hidingSpeed;
+    private float ReleasingSpeed => Mathf.Abs(legBounds.x - legBounds.y) * releasingSpeed;
+    
+    [NonSerialized]
+    public float rotationInput;
+    private bool releasing = true;
+    private int currentLives;
 
     private void Start()
     {
@@ -46,10 +50,14 @@ public class HeadLeg : MonoBehaviour
         rigidbody.gravityScale = 0;
     }
 
-    public void StartRound(SceneData data)
+    public void StartRound(SceneData data, Transform uiParent)
     {
         rigidbody.gravityScale = 1;
         transform.position = data.spawnPositions[input.Id];
+        currentLives = startLives;
+
+        ui = Instantiate(playerUIPrefab, uiParent);
+        ui.SetUI(CharacterInfo, startLives);
     }
 
     public void ContractLeg(bool cancelled)
@@ -87,14 +95,22 @@ public class HeadLeg : MonoBehaviour
         rigidbody.AddTorque(rotationInput * rotationAcceleration * Time.fixedDeltaTime, ForceMode2D.Force);
     }
 
-    public void SetSprites(Character character)
+    public void SetCharacter(CharacterInfo characterInfo)
     {
-        headRenderer.sprite = character.head;
-        legRenderer.sprite = character.leg;
+        CharacterInfo = characterInfo;
+        headRenderer.sprite = characterInfo.head;
+        legRenderer.sprite = characterInfo.leg;
     }
 
-    public void Kick(float power)
+    public void Kick()
     {
-        
+        currentLives--;
+        ui.RemoveHeart();
+
+        if (currentLives <= 0)
+        {
+            GameManager.Instance.RemovedPlayer(this);
+            Destroy(gameObject);
+        }
     }
 }

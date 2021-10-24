@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 [CreateAssetMenu(menuName = "Scene Data", fileName = "Scene Data")]
 public class SceneData : ScriptableObject
 {
-    public Scene scene;
-    public Sprite preview;
+    public Sprite graphic;
+    public GameObject sceneColliders;
     public Vector2[] spawnPositions;
 }

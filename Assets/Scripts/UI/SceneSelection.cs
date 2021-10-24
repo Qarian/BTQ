@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,9 +9,9 @@ public class SceneSelection : MonoBehaviour
     [SerializeField] private ScenePreview scenePreview;
 
     [Space]
+    [SerializeField] private GameObject preGameCanvas;
     [SerializeField] private Transform previewsParent;
-
-
+    
     private List<ScenePreview> previews = new List<ScenePreview>();
     private ScenePreview currentPreview;
 
@@ -54,5 +53,13 @@ public class SceneSelection : MonoBehaviour
         currentPreview.Deselect();
         currentPreview = previews[id];
         currentPreview.Select();
+    }
+
+    public void Approve()
+    {
+        if (!currentPreview) return;
+        
+        GameManager.Instance.StartGame(currentPreview.sceneData);
+        preGameCanvas.SetActive(false);
     }
 }

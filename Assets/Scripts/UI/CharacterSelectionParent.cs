@@ -18,7 +18,7 @@ public class CharacterSelectionParent : MonoBehaviour
 
     public void Reset()
     {
-        foreach (Character character in allCharacters.list)
+        foreach (CharacterInfo character in allCharacters.list)
         {
             character.used = false;
         }

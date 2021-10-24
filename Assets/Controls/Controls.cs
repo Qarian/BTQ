@@ -57,6 +57,14 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Reset"",
+                    ""type"": ""Button"",
+                    ""id"": ""450145a0-b3f3-49b1-a8de-d5b45f77a82f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -257,6 +265,28 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""action"": ""Revert"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""455e04e3-383b-429e-8408-3b29eac0b7e2"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Reset"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f14e6637-6bbf-4660-bab3-c1140244ca11"",
+                    ""path"": ""<Gamepad>/select"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Reset"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -270,6 +300,7 @@ public class @Controls : IInputActionCollection, IDisposable
         m_Main_CharacterNext = m_Main.FindAction("Character Next", throwIfNotFound: true);
         m_Main_CharacterPrevious = m_Main.FindAction("Character Previous", throwIfNotFound: true);
         m_Main_Revert = m_Main.FindAction("Revert", throwIfNotFound: true);
+        m_Main_Reset = m_Main.FindAction("Reset", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -324,6 +355,7 @@ public class @Controls : IInputActionCollection, IDisposable
     private readonly InputAction m_Main_CharacterNext;
     private readonly InputAction m_Main_CharacterPrevious;
     private readonly InputAction m_Main_Revert;
+    private readonly InputAction m_Main_Reset;
     public struct MainActions
     {
         private @Controls m_Wrapper;
@@ -333,6 +365,7 @@ public class @Controls : IInputActionCollection, IDisposable
         public InputAction @CharacterNext => m_Wrapper.m_Main_CharacterNext;
         public InputAction @CharacterPrevious => m_Wrapper.m_Main_CharacterPrevious;
         public InputAction @Revert => m_Wrapper.m_Main_Revert;
+        public InputAction @Reset => m_Wrapper.m_Main_Reset;
         public InputActionMap Get() { return m_Wrapper.m_Main; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -357,6 +390,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Revert.started -= m_Wrapper.m_MainActionsCallbackInterface.OnRevert;
                 @Revert.performed -= m_Wrapper.m_MainActionsCallbackInterface.OnRevert;
                 @Revert.canceled -= m_Wrapper.m_MainActionsCallbackInterface.OnRevert;
+                @Reset.started -= m_Wrapper.m_MainActionsCallbackInterface.OnReset;
+                @Reset.performed -= m_Wrapper.m_MainActionsCallbackInterface.OnReset;
+                @Reset.canceled -= m_Wrapper.m_MainActionsCallbackInterface.OnReset;
             }
             m_Wrapper.m_MainActionsCallbackInterface = instance;
             if (instance != null)
@@ -376,6 +412,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Revert.started += instance.OnRevert;
                 @Revert.performed += instance.OnRevert;
                 @Revert.canceled += instance.OnRevert;
+                @Reset.started += instance.OnReset;
+                @Reset.performed += instance.OnReset;
+                @Reset.canceled += instance.OnReset;
             }
         }
     }
@@ -387,5 +426,6 @@ public class @Controls : IInputActionCollection, IDisposable
         void OnCharacterNext(InputAction.CallbackContext context);
         void OnCharacterPrevious(InputAction.CallbackContext context);
         void OnRevert(InputAction.CallbackContext context);
+        void OnReset(InputAction.CallbackContext context);
     }
 }

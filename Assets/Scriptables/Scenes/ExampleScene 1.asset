@@ -12,9 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a68f626a443345c43849e7d33a305420, type: 3}
   m_Name: ExampleScene 1
   m_EditorClassIdentifier: 
-  scene:
-    m_Handle: 0
-  preview: {fileID: 0}
+  graphic: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  sceneColliders: {fileID: 7888209109761107420, guid: 0efe5eda03e0c6c439106e1753105cf3, type: 3}
   spawnPositions:
   - {x: -9, y: 0}
   - {x: -3, y: 0}
