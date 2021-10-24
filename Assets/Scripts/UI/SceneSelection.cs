@@ -9,11 +9,13 @@ public class SceneSelection : MonoBehaviour
     [SerializeField] private ScenePreview scenePreview;
 
     [Space]
-    [SerializeField] private GameObject preGameCanvas;
+    [SerializeField] private Countdown countdown;
     [SerializeField] private Transform previewsParent;
     
     private List<ScenePreview> previews = new List<ScenePreview>();
-    private ScenePreview currentPreview;
+    public ScenePreview selectedPreview { get; private set; }
+
+    private bool closed = false;
 
     private void Awake()
     {
@@ -23,7 +25,7 @@ public class SceneSelection : MonoBehaviour
 
     private void Start()
     {
-        currentPreview = null;
+        selectedPreview = null;
         previews.Clear();
         foreach (Transform child in previewsParent)
         {
@@ -33,9 +35,9 @@ public class SceneSelection : MonoBehaviour
         foreach (SceneData sceneData in allScenes.list)
         {
             ScenePreview preview = Instantiate(scenePreview, previewsParent);
-            if (!currentPreview)
+            if (!selectedPreview)
             {
-                currentPreview = preview;
+                selectedPreview = preview;
                 preview.Select();
             }
             preview.SetPreview(sceneData);
@@ -45,21 +47,23 @@ public class SceneSelection : MonoBehaviour
 
     public void ChangeSelection(int amount)
     {
-        if (!currentPreview) return;
+        if (!selectedPreview) return;
         
-        int id = previews.FindIndex(p => p == currentPreview);
+        int id = previews.FindIndex(p => p == selectedPreview);
         id = (id + amount + previews.Count) % previews.Count;
         
-        currentPreview.Deselect();
-        currentPreview = previews[id];
-        currentPreview.Select();
+        selectedPreview.Deselect();
+        selectedPreview = previews[id];
+        selectedPreview.Select();
     }
 
     public void Approve()
     {
-        if (!currentPreview) return;
+        if (!selectedPreview || closed) return;
+
+        closed = true;
         
-        GameManager.Instance.StartGame(currentPreview.sceneData);
-        preGameCanvas.SetActive(false);
+        gameObject.SetActive(false);
+        countdown.StartCountdown();
     }
 }

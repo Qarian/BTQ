@@ -8,13 +8,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject gameCanvas;
     public EndScreen endGameCanvas;
     [SerializeField] private Transform playerUIParent;
-    
-    
 
     public static GameManager Instance;
 
     private List<HeadLeg> players = new List<HeadLeg>();
 
+    private bool createdArea = false;
     private bool startedGame = false;
 
     private void Awake()
@@ -22,22 +21,38 @@ public class GameManager : MonoBehaviour
         Instance = this;
         gameCanvas.SetActive(false);
         endGameCanvas.gameObject.SetActive(false);
+
+        PlayerInput.disabledHeadLegInput = true;
     }
 
-    public void StartGame(SceneData selectedScene)
+    public void InitArea(SceneData selectedScene)
     {
-        if (startedGame) return;
+        if (createdArea) return;
 
-        startedGame = true;
-        
+        createdArea = true;
         Instantiate(selectedScene.sceneColliders, transform);
         background.sprite = selectedScene.graphic;
-        gameCanvas.gameObject.SetActive(true);
         
         players = FindObjectsOfType<HeadLeg>().ToList();
         foreach (var player in players)
         {
-            player.StartRound(selectedScene, playerUIParent);
+            player.ReadyHeadLegs(selectedScene);
+        }
+    }
+
+    public void StartGame()
+    {
+        if (startedGame) return;
+
+        startedGame = true;
+
+        PlayerInput.disabledHeadLegInput = false;
+        
+        gameCanvas.gameObject.SetActive(true);
+        
+        foreach (var player in players)
+        {
+            player.StartRound(playerUIParent);
         }
     }
 

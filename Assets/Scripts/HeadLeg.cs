@@ -22,9 +22,6 @@ public class HeadLeg : MonoBehaviour
     [SerializeField] private float hidingSpeed = 0.8f;
     [SerializeField] private float releasingSpeed = 1.5f;
     public float jumpForce = 5;
-    
-    [Header("Kick")]
-    public float baseDmg;
 
     [NonSerialized]
     public Rigidbody2D rigidbody;
@@ -51,11 +48,18 @@ public class HeadLeg : MonoBehaviour
         rigidbody.gravityScale = 0;
     }
 
-    public void StartRound(SceneData data, Transform uiParent)
+    public void ReadyHeadLegs(SceneData data)
+    {
+        transform.rotation = Quaternion.identity;
+        rigidbody.velocity = Vector2.zero;
+        rigidbody.angularVelocity = 0;
+        currentLives = startLives;
+        transform.position = data.spawnPositions[input.Id];
+    }
+
+    public void StartRound(Transform uiParent)
     {
         rigidbody.gravityScale = 1;
-        transform.position = data.spawnPositions[input.Id];
-        currentLives = startLives;
 
         ui = Instantiate(playerUIPrefab, uiParent);
         ui.SetUI(CharacterInfo, startLives);
@@ -106,13 +110,17 @@ public class HeadLeg : MonoBehaviour
 
     public void Kick()
     {
+        if (currentLives <= 0) return;
         currentLives--;
         ui.RemoveHeart();
 
         if (currentLives <= 0)
         {
+            GetComponent<PlayerInput>().enabled = false;
+            GetComponent<UnityEngine.InputSystem.PlayerInput>().enabled = false;
+            releasing = true;
+            rotationInput = 0;
             GameManager.Instance.RemovedPlayer(this);
-            Destroy(gameObject);
         }
     }
 }

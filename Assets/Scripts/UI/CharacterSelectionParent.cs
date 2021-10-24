@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class CharacterSelectionParent : MonoBehaviour
@@ -9,6 +8,8 @@ public class CharacterSelectionParent : MonoBehaviour
 
     [SerializeField] private GameObject windowToClose;
     [SerializeField] private GameObject windowToOpen;
+
+    private bool approved = false;
 
     private void Awake()
     {
@@ -26,6 +27,8 @@ public class CharacterSelectionParent : MonoBehaviour
 
     public void CheckApproves()
     {
+        if (approved) return;
+        
         int requiredApproves = Mathf.Max(2, transform.childCount);
         foreach (Transform child in transform)
         {
@@ -40,6 +43,7 @@ public class CharacterSelectionParent : MonoBehaviour
         {
             windowToClose.SetActive(false);
             windowToOpen.SetActive(true);
+            approved = true;
         }
     }
 }

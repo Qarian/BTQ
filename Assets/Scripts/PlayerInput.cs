@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
 
 public class PlayerInput : MonoBehaviour
 {
@@ -8,7 +7,8 @@ public class PlayerInput : MonoBehaviour
 
     [SerializeField] private HeadLeg headLeg;
     [SerializeField] private CharacterSelection characterSelection;
-    
+
+    public static bool disabledHeadLegInput;
 
     private int counter = 0;
 
@@ -18,22 +18,25 @@ public class PlayerInput : MonoBehaviour
     {
         gameObject.SetActive(true);
 
-        input.onDeviceLost += playerInput => Destroy(gameObject);
+        //input.onDeviceLost += playerInput => Destroy(gameObject);
     }
 
     public void Movement(InputAction.CallbackContext ctx)
     {
+        if (disabledHeadLegInput) return;
         headLeg.rotationInput = -ctx.ReadValue<float>();
     }
 
     public void Jump(InputAction.CallbackContext ctx)
     {
-        headLeg.ContractLeg(ctx.canceled);
         if (ctx.started)
         {
             characterSelection.Approve();
             SceneSelection.Instance.Approve();
         }
+
+        if (disabledHeadLegInput) return;
+        headLeg.ContractLeg(ctx.canceled);
     }
 
     public void NextCharacter(InputAction.CallbackContext ctx)
