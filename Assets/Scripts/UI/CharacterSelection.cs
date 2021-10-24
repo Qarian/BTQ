@@ -102,7 +102,7 @@ public class CharacterSelection : MonoBehaviour
     {
         if (!_currentCharacterInfo) return;
         approved = true;
-        characterName.color = Color.green;
+        characterName.color = new Color(0.01176471f, 0.2039216f, 0.4823529f);
         CharacterSelectionParent.Instance.CheckApproves();
         player.SetCharacter(_currentCharacterInfo);
     }

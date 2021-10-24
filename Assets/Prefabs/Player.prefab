@@ -5082,14 +5082,14 @@ MonoBehaviour:
   legRenderer: {fileID: 7545277698215566557}
   particle: {fileID: 293221035093219017}
   playerUIPrefab: {fileID: 5011849937614548552, guid: ce6d64b577feee9468de601caa9d3438, type: 3}
-  rotationAcceleration: 800
-  maxRotationSpeed: 400
+  rotationAcceleration: 1350
+  maxRotationSpeed: 500
   startLives: 4
   legBounds: {x: 0, y: -0.7}
   scaleBound: {x: 0.5, y: 1}
   hidingSpeed: 8
   releasingSpeed: 20
-  jumpForce: 8
+  jumpForce: 14
 --- !u!50 &8474314884632889397
 Rigidbody2D:
   serializedVersion: 4
@@ -5105,8 +5105,8 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0.02
   m_AngularDrag: 0.05
-  m_GravityScale: 1.5
-  m_Material: {fileID: 6200000, guid: d29d44ab2f70f4044b924247cf90b21a, type: 2}
+  m_GravityScale: 2.5
+  m_Material: {fileID: 6200000, guid: 86690a5dd911b6349ad79f2053a9e9a9, type: 2}
   m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 0
