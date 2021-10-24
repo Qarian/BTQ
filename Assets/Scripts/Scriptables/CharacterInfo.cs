@@ -6,6 +6,6 @@ public class CharacterInfo : ScriptableObject
     public Sprite head;
     public Sprite leg;
     public new string name;
-    //[HideInInspector]
+    [HideInInspector]
     public bool used = false;
 }

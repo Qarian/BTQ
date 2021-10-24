@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject gameCanvas;
     public EndScreen endGameCanvas;
     [SerializeField] private Transform playerUIParent;
+    
+    
 
     public static GameManager Instance;
 

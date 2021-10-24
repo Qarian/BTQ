@@ -13,6 +13,7 @@ public class HeadLeg : MonoBehaviour
 
     [Header("Head")]
     [SerializeField] private float rotationAcceleration;
+    [SerializeField] private float maxRotationSpeed;
     [SerializeField] private int startLives = 3;
 
     [Header("Leg")]
@@ -93,6 +94,7 @@ public class HeadLeg : MonoBehaviour
     private void Rotate()
     {
         rigidbody.AddTorque(rotationInput * rotationAcceleration * Time.fixedDeltaTime, ForceMode2D.Force);
+        rigidbody.angularVelocity = Mathf.Clamp(rigidbody.angularVelocity, -maxRotationSpeed, maxRotationSpeed);
     }
 
     public void SetCharacter(CharacterInfo characterInfo)
