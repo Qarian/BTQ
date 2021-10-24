@@ -71,7 +71,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_Sprite: {fileID: 21300000, guid: c4be5c4fa5e0b2f4cbd98c948b5d2677, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -171,7 +171,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_Sprite: {fileID: 21300000, guid: 85c13986bb82c5d43860099ba0b15e67, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -200,7 +200,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 1}
-    oldSize: {x: 1.4666667, y: 1.8}
+    oldSize: {x: 1.2571429, y: 1.5428572}
     newSize: {x: 1.1, y: 1.35}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -5000,7 +5000,7 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 11
   m_RenderMode: 0
   m_SortMode: 0
   m_MinParticleSize: 0
@@ -5080,6 +5080,7 @@ MonoBehaviour:
   sceneData: {fileID: 11400000, guid: 81e404a7f379033428ce95d20a4604b9, type: 2}
   headRenderer: {fileID: 8451618285893607502}
   legRenderer: {fileID: 7545277698215566557}
+  particle: {fileID: 293221035093219017}
   playerUIPrefab: {fileID: 5011849937614548552, guid: ce6d64b577feee9468de601caa9d3438, type: 3}
   rotationAcceleration: 800
   maxRotationSpeed: 400
@@ -5340,6 +5341,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 171093669103112861, guid: a3bb2b27352c4ac4d997e6cb96873c49, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1439056307236210609, guid: a3bb2b27352c4ac4d997e6cb96873c49, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1439056307236210609, guid: a3bb2b27352c4ac4d997e6cb96873c49, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1439056307236210609, guid: a3bb2b27352c4ac4d997e6cb96873c49, type: 3}
+      propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2854709102623896941, guid: a3bb2b27352c4ac4d997e6cb96873c49, type: 3}
