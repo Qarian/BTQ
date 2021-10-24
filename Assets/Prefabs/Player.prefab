@@ -5083,7 +5083,7 @@ MonoBehaviour:
   playerUIPrefab: {fileID: 5011849937614548552, guid: ce6d64b577feee9468de601caa9d3438, type: 3}
   rotationAcceleration: 800
   maxRotationSpeed: 400
-  startLives: 3
+  startLives: 4
   legBounds: {x: 0, y: -0.7}
   scaleBound: {x: 0.5, y: 1}
   hidingSpeed: 8
