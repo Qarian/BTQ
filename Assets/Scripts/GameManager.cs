@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private SpriteRenderer background;
     [SerializeField] private GameObject gameCanvas;
     public EndScreen endGameCanvas;
     [SerializeField] private Transform playerUIParent;
@@ -31,7 +30,6 @@ public class GameManager : MonoBehaviour
 
         createdArea = true;
         Instantiate(selectedScene.sceneColliders, transform);
-        background.sprite = selectedScene.graphic;
         
         players = FindObjectsOfType<HeadLeg>().ToList();
         foreach (var player in players)
