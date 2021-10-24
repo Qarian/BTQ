@@ -247,13 +247,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4461308818264693626}
-  m_LocalRotation: {x: -0, y: -0, z: -0.536356, w: 0.8439919}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.79, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4921195532245628308}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -64.872}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!198 &293221035093219017
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -443,8 +443,8 @@ ParticleSystem:
     startColor:
       serializedVersion: 2
       minMaxState: 2
-      minColor: {r: 0.7216981, g: 1, b: 0.8282818, a: 1}
-      maxColor: {r: 0.33708617, g: 0.6449582, b: 0.9528302, a: 1}
+      minColor: {r: 1, g: 0.8536888, b: 0.8235294, a: 1}
+      maxColor: {r: 0.990566, g: 0.4251958, b: 0.6077998, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -1922,7 +1922,7 @@ ParticleSystem:
     orbitalY:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1.7
+      scalar: 0
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -2900,11 +2900,11 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
   NoiseModule:
-    enabled: 0
+    enabled: 1
     strength:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0.3
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -3061,7 +3061,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     separateAxes: 0
-    frequency: 0.5
+    frequency: 0.77
     damping: 1
     octaves: 1
     octaveMultiplier: 0.5
