@@ -26,8 +26,9 @@ public class Foot : MonoBehaviour
 
             if (enemy)
             {
-                if(other.gameObject.name == "Body")
-                    enemy.rigidbody.AddForce(player.jumpForce * 0.5f * -other.contacts[0].normal, ForceMode2D.Impulse);
+                if (other.contacts[0].collider.name != "Body") return;
+                
+                enemy.rigidbody.AddForce(player.jumpForce * 0.5f * -other.contacts[0].normal, ForceMode2D.Impulse);
                 
                 if (kickedEnemies.ContainsKey(enemy))
                 {
