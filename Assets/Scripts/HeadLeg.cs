@@ -8,6 +8,8 @@ public class HeadLeg : MonoBehaviour
     [SerializeField] private SceneData sceneData;
     [SerializeField] private SpriteRenderer headRenderer;
     [SerializeField] private SpriteRenderer legRenderer;
+    [SerializeField] private ParticleSystem particle;
+    
 
     [SerializeField] private PlayerUI playerUIPrefab;
 
@@ -45,6 +47,7 @@ public class HeadLeg : MonoBehaviour
         input = GetComponent<PlayerInput>();
         
         transform.position = sceneData.spawnPositions[input.Id];
+        particle.gameObject.SetActive(false);
         rigidbody.gravityScale = 0;
     }
 
@@ -120,6 +123,8 @@ public class HeadLeg : MonoBehaviour
             GetComponent<UnityEngine.InputSystem.PlayerInput>().enabled = false;
             releasing = true;
             rotationInput = 0;
+            particle.gameObject.SetActive(true);
+            particle.Play();
             GameManager.Instance.RemovedPlayer(this);
         }
     }
